@@ -6,7 +6,7 @@ Welcome to the 2DChampion Game Development Repository! This is a public reposito
 To get started with contributing to the repository, you should first clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/username/2dchampion.git
+https://github.com/rishibaghel25/2DChampion.git
 ```
 
 Once you have cloned the repository, you can create a new branch to work on your changes:
