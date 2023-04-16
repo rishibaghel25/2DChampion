@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
+
+body {
+    background-image: linear-gradient(to right, rgb(3, 105, 3),rgb(47, 228, 47));
+    color: white;
+    height: 95vh;
+    width: 95vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    font-family: 'Cute Font', cursive;
+    font-size: 20px;
+}
+
+#snake {
+    border: solid 2px white;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 10px;
+    padding-right: 15%;
+    padding-left: 15%;
+}
+
+
+img {
+    position: relative;
+    right: 72%;
+}
+
+.btn {
+  background-image: url(../image/pontuacao.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 187px;
+  height: 65px;
+  position: absolute;
+  left: 54%;
+  margin-top: 42%;
+}
+
+#score {
+    position: relative;
+    left: 83%;
+    margin-top: 11%;
+}
+
+/* Footer */
+footer ,
+footer .myFooter{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+footer .myFooter span {
+  position: relative;
+  display: inline-block;
+  color: white; 
+  animation: hearts 0.6s cubic-bezier(0.18, 0.89, 0.29, 1.05) infinite;
+}
+
+/* Small Screen - Heart */
+@-moz-keyframes hearts {
+  50% {
+    transform: scale(1.4);
+  }
+}
+@-webkit-keyframes hearts {
+  50% {
+    transform: scale(1.4);
+  }
+}
+@-o-keyframes hearts {
+  50% {
+    transform: scale(1.4);
+  }
+}
+@keyframes hearts {
+  50% {
+    transform: scale(1.4);
+  }
+}
