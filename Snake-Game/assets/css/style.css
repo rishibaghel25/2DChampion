@@ -1,69 +1,80 @@
-@import url('https://fonts.googleapis.com/css2?family=Cute+Font&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cute+Font&display=swap");
 
 body {
-    background-image: linear-gradient(to right, rgb(3, 105, 3),rgb(47, 228, 47));
-    color: white;
-    height: 95vh;
-    width: 95vw;
+  background-image: url("./image/bg.svg"); 
+  background-color: black;
+  color: white;
+  height: 90vh;
+  max-width: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: "Cute Font", cursive;
+  font-size: 30px;
+}
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-
-    font-family: 'Cute Font', cursive;
-    font-size: 20px;
+canvas {
+ margin-top: -13vh;
+ margin-left: 100vh;
 }
 
 #snake {
-    border: solid 2px white;
+  border: solid 2px white;
 }
 
 .container {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    padding: 10px;
-    padding-right: 15%;
-    padding-left: 15%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 10px;
+  padding-right: 15%;
+  padding-left: 15%;
+}
+.btn{
+display:flex;
+justify-content: center;
+align-items: center;
+height: 10vh;
+width: 15vh;
+margin-left: 80vh;
+}
+#score{
+  margin-left: 1vh;
+
 }
 
 
 img {
-    position: relative;
-    right: 72%;
-}
-
-.btn {
-  background-image: url(../image/pontuacao.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 187px;
-  height: 65px;
-  position: absolute;
-  left: 54%;
-  margin-top: 42%;
-}
-
-#score {
-    position: relative;
-    left: 83%;
-    margin-top: 11%;
+  /* position: relative; */
+  right: 72%;
 }
 
 /* Footer */
-footer ,
-footer .myFooter{
+.myFooter {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
+.title{
+  margin-left: 100vh;
+  margin-top: 5vh;
+}
+
 footer .myFooter span {
-  position: relative;
   display: inline-block;
-  color: white; 
+  color: white;
   animation: hearts 0.6s cubic-bezier(0.18, 0.89, 0.29, 1.05) infinite;
+}
+
+.brick img {
+  margin-top: -104vh;
+  margin-left: 70vh;
+  width: 205%;
+  position: fixed;
 }
 
 /* Small Screen - Heart */
