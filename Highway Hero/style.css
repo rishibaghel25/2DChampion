@@ -1,114 +1,215 @@
- *{margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;}
-            .hide{ display: none; }
-            .carGame{
-                width: 100%;
-                height: 100vh;
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
+*{margin: 0; padding: 0; font-family: Arial, Helvetica, sans-serif;}
+    .hide{ display: none; }
+    .carGame{
+        width: 100%;
+        height: 100vh;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+    }
+    .buttonContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 30px;
+        margin-top: 30px;
+      }
+      
+      .buttonContainer button {
+        margin-bottom: 40px;
+      }
+      
+.playButton,
+.pauseButton,.instructionsButton,.restartButton  {
+  appearance: none;
+  background-color: #FFFFFF;  
+  border-style: none;
+  box-shadow: #a1c5f8 0 -12px 6px inset;
+  box-sizing: border-box;
+  color: #000000;
+  cursor: pointer;
+  display: inline-block;
+  font-family: -apple-system,sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: -.24px;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.3rem;
+  quotes: auto;
+  text-align: center;
+  text-decoration: none;
+  transition: all .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
 
-            }
-            .myCar{
-                width: 50px;
-                height: 90px;
-                /* background: red; */
-                position: absolute;
-                bottom: 120px;
-                background-image: url('car4.png');
-                background-repeat: no-repeat;
-                background-size: 100% 100%;   
-            }
-            .enemyCar{
-                width: 30px;
-                height: 60px;
-                /* background: red; */
-                position: absolute;
-                bottom: 120px;
-                background-image: url('car3.png');
-                /* border-radius: 15px; */
-                background-repeat: no-repeat;
-                background-size: 100% 100%;   
-            }
-            .lines{
-                width: 10px;
-                height: 100px;
-                background: white;
-                position: absolute;
-                margin-left: 195px;   
-            }
-            .gameArea{
-                width: 400px;
-                height: 100vh;
-                background: #2d3436;
-                margin: auto;
-                position: relative;
-                overflow: hidden;
-                border-right: 7px dashed #c8d6e5;
-                border-left: 7px dashed #c8d6e5;
-            }
-            .score{
-                position: absolute;
-                top: 15px;
-                left: 40px;
-                background-image: linear-gradient(to right, rgb(233, 36, 36), orange);
-                width: 300px;
-                line-height: 70px;
-                text-align: center;
-                color: white;
-                font-size: 1.5rem;
-                font-family: Arial, Helvetica, sans-serif;
-                box-shadow: 0 5px 5px #777;
-            }
-            .startScreen{
-                position: absolute;
-                background-color: #ee5253;
-                left: 24%;
-                top: 40%;
-                transform: translate(-50% -50%);
-                color: white;
-                z-index: 1;
-                text-align: center;
-                border: 1px solid #ff6b6b;
-                padding: 15px;
-                margin: auto;
-                width: 50%;
-                cursor: pointer;
-                letter-spacing: 5;
-                font-size: 20px;
-                word-spacing: 3;
-                line-height: 30px;
-                text-transform: uppercase;
-                box-shadow: 0 5px 5px #777;
-            }
-            body {
-                background-color: #fee440;
-            }
-            svg {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100vh;
-            }
-            
-            
-            .links {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                font-size: 18px;
-                font-family: sans-serif;
-            }
-            a {
-                text-decoration: none;
-                color: black;
-                margin-left: 1em;
-            }
-            a:hover {
-                text-decoration: underline;
-            }
-            a img.icon {
-                display: inline-block;
-                height: 1em;
-                margin: 0 0 -0.1em 0.3em;
-            }
+.playButton:hover,
+.pauseButton:hover,.instructionsButton:hover,.restartButton:hover {
+  background-color: #FFC229;
+  box-shadow: #FF6314 0 -6px 8px inset;
+  transform: scale(1.125);
+}
+
+.playButton:active,
+.pauseButton:active,.instructionsButton:active,.restartButton:active {
+  transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+    .playButton,
+    .pauseButton,.instructionsButton,.restartButton  {
+    font-size: 1.5rem;
+    padding: .75rem 2rem;
+  }
+}
+
+    .myCar{
+        width: 50px;
+        height: 90px;
+        /* background: red; */
+        position: absolute;
+        bottom: 120px;
+        background-image: url('car4.png');
+        background-repeat: no-repeat;
+        background-size: 100% 100%;   
+    }
+    .enemyCar{
+        width: 30px;
+        height: 60px;
+        /* background: red; */
+        position: absolute;
+        bottom: 120px;
+        background-image: url('car3.png');
+        /* border-radius: 15px; */
+        background-repeat: no-repeat;
+        background-size: 100% 100%;   
+    }
+    .lines{
+        width: 10px;
+        height: 100px;
+        background: white;
+        position: absolute;
+        margin-left: 195px;   
+    }
+    .gameArea{
+        width: 400px;
+        height: 100vh;
+        background: #2d3436;
+        margin: auto;
+        position: relative;
+        overflow: hidden;
+        border-right: 7px dashed #c8d6e5;
+        border-left: 7px dashed #c8d6e5;
+    }
+    .score{
+        position: absolute;
+        top: 15px;
+        left: 40px;
+        background-image: linear-gradient(to right, rgb(233, 133, 26), rgb(233, 56, 195));
+        width: 300px;
+        line-height: 70px;
+        text-align: center;
+        color: white;
+        font-size: 1.5rem;
+        font-family: Arial, Helvetica, sans-serif;
+        box-shadow: 0 5px 5px #777;
+    }
+    .pausplay{
+      position: absolute;
+      top: 215px;
+      left: 40px;
+      background-image: linear-gradient(to right, rgb(233, 133, 26), rgb(233, 56, 195));
+      width: 300px;
+      line-height: 70px;
+      text-align: center;
+      color: white;
+      font-size: 1.5rem;
+      font-family: Arial, Helvetica, sans-serif;
+      box-shadow: 0 5px 5px #777;
+  }
+    .startScreen{
+        position: absolute;
+        background-image:url("bg.png");
+        background-size: cover;
+        left: 22%;
+        right: 22%;
+        top: 20%;
+        transform: translate(-50% -50%);
+        color: rgba(183, 15, 15, 0.945);
+        z-index: 1;
+        text-align: center;
+        border: 1px solid #4c1818;
+        padding: 15px;
+        margin-bottom: 160px;
+        width: 56%;
+        cursor: pointer;
+        letter-spacing: 5;
+        font-size: 20px;
+        word-spacing: 3;
+        line-height: 30px;
+        text-transform: uppercase;
+        box-shadow: 0 5px 5px #777;
+    }
+
+    body {
+        background-image: url("bgcity.jpg"), url("back.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center, center;
+        background-attachment: fixed;
+        margin-left: 105px;
+        margin-right: 105px;
+      }
+      
+      .back {
+        height: 100vh; /* Adjust the height as needed */
+        background-image: url("back.jpg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+      }
+      
+    .links {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        font-size: 18px;
+        font-family: sans-serif;
+    }
+    a {
+        text-decoration: none;
+        color: black;
+        margin-left: 1em;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+    a img.icon {
+        display: inline-block;
+        height: 1em;
+        margin: 0 0 -0.1em 0.3em;
+    }
+
+    .instructionsContainer {
+      background-color: #2d3242;
+      color: white;
+      border: 1px solid #764dd4;
+      padding: 15px;
+      margin: auto;
+      width: 70%;
+      text-align: center;
+      box-shadow: 0 5px 5px #777;
+      margin-top: 20px;
+    }
     
+    .instructionsContainer p {
+      margin-bottom: 10px;
+      font-size: 20px;
+      line-height: 30px;
+      text-transform: uppercase;
+    }
+    
+    .bold-text {
+      font-weight: bold;
+    }
