@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="game-area">
+    <div class="snake"></div>
+    <div class="food"></div>
+  </div>
+  <div class="score">Score: {{ score }}</div>
+  <button class="start-button" *ngIf="!isGameRunning" (click)="startGame()">Start</button>
+  <button class="restart-button" *ngIf="isGameOver" (click)="restartGame()">Restart</button>
+  <div class="high-score" *ngIf="highScore > 0">
+    {{ username }}
+    High Score: {{ highScore }}
+  </div>
+  <button class="close-button" (click)="closeGame()">Close</button>
+</div>
