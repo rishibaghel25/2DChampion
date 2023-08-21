@@ -26,8 +26,22 @@ We welcome contributions from developers of all skill levels! If you are new to 
   -  Fix bugs and issues
   -  Add new features
 
+## Adding 2D Games
+If you'd like to contribute a 2D game, you can create a new folder for your game within the repository. Your game should be developed using HTML, CSS, and TypeScript, as our website is built on the Angular framework. You can refer to existing games in the repository for inspiration and examples.
 
+### To add your game:
+
+- Create a new folder for your game within the repository.
+- Develop your game using HTML, CSS, and TypeScript.
+- Include any necessary assets within your game's folder.
+- Update this README to showcase your game, including screenshots or GIFs.
+- Create a pull request to submit your game for review.
 ## Games
+![PixelPython (1)](https://github.com/rishibaghel25/2DChampion/blob/main/Pixel%20Python/PixelPython.png)
 ![Highway (1)](https://github.com/rishibaghel25/2DChampion/assets/100260148/1d4231c7-d2ad-407e-8397-544c5d21812a)
+
+## Notes
+Feel free to reach out to us if you have any questions or need assistance with contributing your 2D game. Let's create some amazing games together!
+
 
 
