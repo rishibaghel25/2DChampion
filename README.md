@@ -1,4 +1,5 @@
-# 2DChampion
+![2D Champion](./2D.png)
+## 2D Champion
 Welcome to the 2DChampion Game Development Repository! This is a public repository where developers can contribute to the development of 2D games that will be featured on the 2DChampion website.
 
 ## Getting Started
@@ -40,7 +41,6 @@ If you'd like to contribute a 2D game, you can create a new folder for your game
 ![PixelPython (1)](https://github.com/rishibaghel25/2DChampion/blob/main/Pixel%20Python/PixelPython.png)
 ![Highway (1)](https://github.com/rishibaghel25/2DChampion/assets/100260148/1d4231c7-d2ad-407e-8397-544c5d21812a)
 
-## Notes
 Feel free to reach out to us if you have any questions or need assistance with contributing your 2D game. Let's create some amazing games together!
 
 
