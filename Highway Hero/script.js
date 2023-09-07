@@ -8,88 +8,93 @@ pausplay.addEventListener("click",handleButtonClick);
 const player = { speed: 5, score: 0 };
 
 let keyState = {}; 
+let initial = true; // This boolean is here for the handleButtonClick event
 
 document.addEventListener("keydown", function (e) {
-keyState[e.code] = true; 
-if (keyState["KeyX"]) {
-  
-  if (player.speed === 5) {
-    player.speed = 10; 
-  } 
-  else if (player.speed === 10) {
-    player.speed = 15; 
-  } else {
-    player.speed = 5; 
+  keyState[e.code] = true; 
+  if (keyState["KeyX"]) {
+    switch (player.speed) {
+      case 5:
+        player.speed = 10;
+        break;
+      case 10:
+        player.speed = 15;
+        break;
+      default:
+        break;  // removed if player.speed = 15 case, since it seemed like Z was supposed to set it to normal
+    }
   }
-}
 });
 document.addEventListener("keydown", function (e) {
-keyState[e.code] = true; 
-if (keyState["KeyZ"]) {
-  player.speed = 5; 
-}
+  keyState[e.code] = true; 
+  if (keyState["KeyZ"]) {
+    player.speed = 5; 
+  }
 });
 
 document.addEventListener("keyup", function (e) {
-keyState[e.code] = false; 
+  keyState[e.code] = false; 
 });
 
 let keys = {
-ArrowUp: false,
-ArrowDown: false,
-ArrowLeft: false,
-ArrowRight: false,
+  ArrowUp: false,
+  ArrowDown: false,
+  ArrowLeft: false,
+  ArrowRight: false,
 };
 
 document.addEventListener("keydown", keyDown);
 document.addEventListener("keyup", keyUp);
 
 function keyDown(e) {
-e.preventDefault();
-keys[e.key] = true;
+  e.preventDefault();
+  keys[e.key] = true;
 }
 
 function keyUp(e) {
-e.preventDefault();
-keys[e.key] = false;
+  e.preventDefault();
+  keys[e.key] = false;
 }
 
 function isCollide(a, b) {
-aRect = a.getBoundingClientRect();
-bRect = b.getBoundingClientRect();
+  aRect = a.getBoundingClientRect();
+  bRect = b.getBoundingClientRect();
 
-return !(
-  aRect.bottom < bRect.top ||
-  aRect.top > bRect.bottom ||
-  aRect.right < bRect.left ||
-  aRect.left > bRect.right
-);
+  return !(
+    aRect.bottom < bRect.top ||
+    aRect.top > bRect.bottom ||
+    aRect.right < bRect.left ||
+    aRect.left > bRect.right
+  );
 }
 
 function handleButtonClick(event) {
   const target = event.target;
-  if (target.classList.contains("playButton")) {
-    initializeGame();
-  } else if (target.classList.contains("instructionsButton")) {
-    showInstructions();
-  } 
 
   if (target.classList.contains("playButton")) {
-    playGame();
-  } else if (target.classList.contains("pauseButton")) {
+    if (isPaused) {
+      playGame();
+    } else if (initial) {
+      initializeGame();
+      initial = false;
+    }
+    // Doesn't do anything if either of these cases is false
+  } else if (target.classList.contains("instructionsButton")) {
+    showInstructions();
+  } else if (target.classList.contains("pauseButton") && !isPaused) {
     pauseGame();
   }
 }
 
 function moveLines() {
-let lines = document.querySelectorAll(".lines");
-lines.forEach(function (item) {
-  if (item.y >= 700) {
-    item.y -= 750;
-  }
-  item.y += player.speed;
-  item.style.top = item.y + "px";
-});
+  let lines = document.querySelectorAll(".lines");
+  lines.forEach(function (item) {
+    if (item.y >= 700) {
+      item.y -= 750;
+    }
+    item.y += player.speed;
+    item.style.top = item.y + "px";
+  });
 }
 
 
@@ -127,27 +132,27 @@ const carImages = [
 "enemy3.png",
 "enemy4.png",
 "enemy5.png",
-"OIP.jpg"
+"OIP.png"
 ];
 
 function moveEnemy(myCar) {
-let enemyCarList = document.querySelectorAll(".enemyCar");
-const randomCarImage =
-  carImages[Math.floor(Math.random() * carImages.length)];
+  let enemyCarList = document.querySelectorAll(".enemyCar");
+  const randomCarImage =
+    carImages[Math.floor(Math.random() * carImages.length)];
 
-enemyCarList.forEach(function (enemyCar) {
-  if (isCollide(myCar, enemyCar)) {
-    endGame();
-  }
+  enemyCarList.forEach(function (enemyCar) {
+    if (isCollide(myCar, enemyCar)) {
+      endGame();
+    }
 
-  if (enemyCar.y >= 750) {
-    enemyCar.y = -300;
-    enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
-  }
+    if (enemyCar.y >= 750) {
+      enemyCar.y = -300;
+      enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
+    }
 
-  enemyCar.y += player.speed;
-  enemyCar.style.top = enemyCar.y + "px";
-});
+    enemyCar.y += player.speed;
+    enemyCar.style.top = enemyCar.y + "px";
+  });
 }
 
 let isPaused = false;
@@ -158,14 +163,9 @@ playButton.addEventListener("click", playGame);
 pauseButton.addEventListener("click", pauseGame);
 const buttonShowDelay=1000;
 function playGame() {
-  if (!player.start) {
-    initializeGame();
-  }
   isPaused = false;
-  playButton.disabled = true;
-  pauseButton.disabled = false;
+  initializeGame();
   document.querySelector('.pausplay').classList.add('hide');
-  runGame();
   setTimeout(function () {
     document.querySelector('.pausplay').classList.remove('hide');
   }, buttonShowDelay);
@@ -173,8 +173,6 @@ function playGame() {
 
 function pauseGame() {
   isPaused = true;
-  playButton.disabled = false;
-  pauseButton.disabled = true;
 }
 
 
@@ -207,7 +205,6 @@ function runGame() {
     player.score++;
     score.innerText = "Score: " + player.score + "\nSpeed: " + player.speed;
   }
-  
 }
 
 
@@ -218,37 +215,37 @@ function initializeGame() {
   player.start = true;
   player.score = 0;
   window.requestAnimationFrame(runGame)
-for (x = 0; x < 5; x++) {
-  let roadLine = document.createElement("div");
-  roadLine.setAttribute("class", "lines");
-  roadLine.y = x * 150;
-  roadLine.style.top = roadLine.y + "px";
-  gameArea.appendChild(roadLine);
-}
+  for (x = 0; x < 5; x++) {
+    let roadLine = document.createElement("div");
+    roadLine.setAttribute("class", "lines");
+    roadLine.y = x * 150;
+    roadLine.style.top = roadLine.y + "px";
+    gameArea.appendChild(roadLine);
+  }
 
-const randomCarImage =
-  carImages[Math.floor(Math.random() * carImages.length)];
+  const randomCarImage =
+    carImages[Math.floor(Math.random() * carImages.length)];
 
-let car = document.createElement("div");
-car.setAttribute("class", "myCar");
-car.style.backgroundImage = "url('car2.png')";
-gameArea.appendChild(car);
+  let car = document.createElement("div");
+  car.setAttribute("class", "myCar");
+  car.style.backgroundImage = "url('car2.png')";
+  gameArea.appendChild(car);
 
-player.x = car.offsetLeft;
-player.y = car.offsetTop;
+  player.x = car.offsetLeft;
+  player.y = car.offsetTop;
 
-for (x = 0; x < 3; x++) {
-  let enemyCar = document.createElement("div");
-  enemyCar.setAttribute("class", "enemyCar");
-  enemyCar.y = (x + 1) * 350 * -1;
-  enemyCar.style.top = enemyCar.y + "px";
-  enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
-  let randomIndex = Math.floor(Math.random() * carImages.length);
-  enemyCar.style.backgroundImage = `url('${carImages[randomIndex]}')`;
-  gameArea.appendChild(enemyCar);
-}
+  for (x = 0; x < 3; x++) {
+    let enemyCar = document.createElement("div");
+    enemyCar.setAttribute("class", "enemyCar");
+    enemyCar.y = (x + 1) * 350 * -1;
+    enemyCar.style.top = enemyCar.y + "px";
+    enemyCar.style.left = Math.floor(Math.random() * 350) + "px";
+    let randomIndex = Math.floor(Math.random() * carImages.length);
+    enemyCar.style.backgroundImage = `url('${carImages[randomIndex]}')`;
+    gameArea.appendChild(enemyCar);
+  }
 
-moveEnemy(car);
+  moveEnemy(car);
 }
 
 let chk=0;
