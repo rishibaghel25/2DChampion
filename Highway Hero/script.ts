@@ -114,7 +114,7 @@ function moveLines() {
 
 function endGame() {
   player.start = false;
-  if (startScreen) startScreen.classList.remove("hide");
+  startScreen.classList.remove("hide");
   
   var restartButton = document.createElement("button");
   restartButton.className = "restartButton";
@@ -134,12 +134,9 @@ function endGame() {
   
   
   endGameContainer.appendChild(scoreText);
-  endGameContainer.appendChild(restartButton); 
-  
-  if (startScreen) {
-    startScreen.innerHTML = "";
-    startScreen.appendChild(endGameContainer);
-  }
+  endGameContainer.appendChild(restartButton);  
+  startScreen.innerHTML = "";
+  startScreen.appendChild(endGameContainer);
 }
 
 
