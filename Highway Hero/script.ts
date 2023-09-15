@@ -1,11 +1,25 @@
-const score = document.querySelector(".score");
-const startScreen = document.querySelector(".startScreen");
-const gameArea = document.querySelector(".gameArea");
-const pausplay = document.querySelector(".pausplay");
+const score = document.querySelector(".score") as HTMLDivElement;
+const startScreen = document.querySelector(".startScreen") as Element;
+const gameArea = document.querySelector(".gameArea") as Element;
+const pausePlay = document.querySelector(".pauseButton") as Element;
 
 startScreen.addEventListener("click", handleButtonClick);
-pausplay.addEventListener("click",handleButtonClick);
-const player = { speed: 5, score: 0 };
+pausePlay.addEventListener("click",handleButtonClick);
+
+interface AxisHtmlElement extends HTMLElement {
+  x: number;
+  y: number;
+}
+
+interface Player {
+  speed: number,
+  score: number,
+  start?: boolean,
+  x: number,
+  y: number,
+}
+
+const player = { speed: 5, score: 0 } as Player;
 
 let keyState = {}; 
 let initial = true; // This boolean is here for the handleButtonClick event
@@ -57,8 +71,8 @@ function keyUp(e) {
 }
 
 function isCollide(a, b) {
-  aRect = a.getBoundingClientRect();
-  bRect = b.getBoundingClientRect();
+  const aRect = a.getBoundingClientRect();
+  const bRect = b.getBoundingClientRect();
 
   return !(
     aRect.bottom < bRect.top ||
@@ -88,7 +102,7 @@ function handleButtonClick(event) {
 
 function moveLines() {
   let lines = document.querySelectorAll(".lines");
-  lines.forEach(function (item) {
+  lines.forEach(function (item: any) {
     if (item.y >= 700) {
       item.y -= 750;
     }
@@ -136,9 +150,7 @@ const carImages = [
 ];
 
 function moveEnemy(myCar) {
-  let enemyCarList = document.querySelectorAll(".enemyCar");
-  const randomCarImage =
-    carImages[Math.floor(Math.random() * carImages.length)];
+  let enemyCarList = [...document.querySelectorAll(".enemyCar")] as AxisHtmlElement[];
 
   enemyCarList.forEach(function (enemyCar) {
     if (isCollide(myCar, enemyCar)) {
@@ -156,8 +168,8 @@ function moveEnemy(myCar) {
 }
 
 let isPaused = false;
-const playButton = document.querySelector(".playButton");
-const pauseButton = document.querySelector(".pauseButton");
+const playButton = document.querySelector(".playButton") as Element; 
+const pauseButton = document.querySelector(".pauseButton") as Element; 
 
 playButton.addEventListener("click", playGame);
 pauseButton.addEventListener("click", pauseGame);
@@ -165,10 +177,11 @@ const buttonShowDelay=1000;
 function playGame() {
   isPaused = false;
   initializeGame();
-  document.querySelector('.pausplay').classList.add('hide');
-  setTimeout(function () {
-    document.querySelector('.pausplay').classList.remove('hide');
-  }, buttonShowDelay);
+  const pausePlay = document.querySelector('.pausePlay') as Element
+  pausePlay.classList.add('hide');
+  setTimeout(
+    () => pausePlay.classList.remove('hide'),
+    buttonShowDelay);
 }
 
 function pauseGame() {
@@ -177,7 +190,7 @@ function pauseGame() {
 
 
 function runGame() {
-  let car = document.querySelector(".myCar");
+  let car = document.querySelector(".myCar") as HTMLDivElement;
   let road = gameArea.getBoundingClientRect();
 
   if (player.start && !isPaused) {
@@ -215,16 +228,13 @@ function initializeGame() {
   player.start = true;
   player.score = 0;
   window.requestAnimationFrame(runGame)
-  for (x = 0; x < 5; x++) {
-    let roadLine = document.createElement("div");
+  for (let x = 0; x < 5; x++) {
+    let roadLine = document.createElement("div") as unknown as AxisHtmlElement;
     roadLine.setAttribute("class", "lines");
     roadLine.y = x * 150;
     roadLine.style.top = roadLine.y + "px";
     gameArea.appendChild(roadLine);
   }
-
-  const randomCarImage =
-    carImages[Math.floor(Math.random() * carImages.length)];
 
   let car = document.createElement("div");
   car.setAttribute("class", "myCar");
@@ -234,8 +244,8 @@ function initializeGame() {
   player.x = car.offsetLeft;
   player.y = car.offsetTop;
 
-  for (x = 0; x < 3; x++) {
-    let enemyCar = document.createElement("div");
+  for (let x = 0; x < 3; x++) {
+    let enemyCar = document.createElement("div") as unknown as AxisHtmlElement;
     enemyCar.setAttribute("class", "enemyCar");
     enemyCar.y = (x + 1) * 350 * -1;
     enemyCar.style.top = enemyCar.y + "px";
